@@ -42,14 +42,14 @@ def get_pet_labels(image_dir):
     """
     # Replace None with the results_dic dictionary that you created with this
     # function
-    results_dic={}
+    results_dic = {}
     filename_list = listdir(image_dir)
-    print("filename_list : " , filename_list)
+    # print("filename_list : " , filename_list)
     pet_labels = []
     for filename in filename_list:
         parts = filename.split('_')[:-1]
         finame = ' '.join(part.lower() for part in parts)
-        print("finame" , finame , end = '\n')
+        # print("finame" , finame , end = '\n')
         if finame[0]!='.':
             pet_labels.append(finame)
 

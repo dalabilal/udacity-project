@@ -3,7 +3,7 @@
 # */AIPND-revision/intropyproject-classify-pet-images/print_results_hints.py
 #                                                                             
 # PROGRAMMER: Dalah al-hashlamoon
-# DATE CREATED:  26-5-2023                                
+# DATE CREATED:  27-5-2023                                
 # REVISED DATE: 
 # PURPOSE: This is a *hints* file to help guide students in creating the 
 #          function print_results that prints the results statistics from the
@@ -80,7 +80,6 @@ def print_results(results_dic, results_stats_dic, model,
 
     # Prints summary statistics (percentages) on Model Run
     print(" ")
-    for key in results_stats_dic:
         # TODO: 6b. REPLACE pass with CODE that prints out all the percentages 
         #           in the results_stats_dic dictionary. Recall that all 
         #           percentages in results_stats_dic have 'keys' that start with 
@@ -90,9 +89,9 @@ def print_results(results_dic, results_stats_dic, model,
         #           both the key and the value. Remember the value is accessed 
         #           by results_stats_dic[key]
         #
-        for key,value in  results_stats_dic.items():
-            if key[0]=='p':
-                print("{}: {}".format(key, value)) 
+    for key , value in  results_stats_dic.items():
+        if key[0]=='p':
+            print("{}: {}".format(key, value)) 
 
 
     # IF print_incorrect_dogs == True AND there were images incorrectly 
@@ -104,7 +103,7 @@ def print_results(results_dic, results_stats_dic, model,
         print("\nINCORRECT Dog/NOT Dog Assignments:")
 
         # process through results dict, printing incorrectly classified dogs
-        for key in results_dic:
+        for value in results_dic.values():
 
             # TODO: 6c. REPLACE pass with CODE that prints out the pet label 
             #           and the classifier label from results_dic dictionary    
@@ -124,11 +123,11 @@ def print_results(results_dic, results_stats_dic, model,
             #
             # Pet Image Label is a Dog - Classified as NOT-A-DOG -OR- 
             # Pet Image Label is NOT-a-Dog - Classified as a-DOG
-            if results_dic[key][3] != results_dic[key][4]:
-                if results_dic[key][3] == 1:
-                    print('Pet Image Label is a Dog - Classified as NOT-A-DOG')
+            if value[3] != value[4]:
+                if value[3] == 1:
+                    print('Pet Image Label is a Dog {} - Classified as NOT-A-DOG  {}: '.format(value[0] , value[1]))
                 else:
-                    print('Pet Image Label is NOT-a-Dog - Classified as a-DOG')
+                    print('Pet Image Label is NOT-a-Dog {} - Classified as a-DOG {}'.format(value[0] , value[1]))
 
     # IF print_incorrect_breed == True AND there were dogs whose breeds 
     # were incorrectly classified - print out these cases                    
@@ -138,10 +137,10 @@ def print_results(results_dic, results_stats_dic, model,
         print("\nINCORRECT Dog Breed Assignment:")
 
         # process through results dict, printing incorrectly classified breeds
-        for key in results_dic:
+        for value in results_dic.values():
 
             # Pet Image Label is-a-Dog, classified as-a-dog but is WRONG breed
-            if ( sum(results_dic[key][3:]) == 2 and
-                results_dic[key][2] == 0 ):
-                print("Real: {:>26}   Classifier: {:>30}".format(results_dic[key][0],
-                                                          results_dic[key][1]))
+            if ( (sum(value[3:])) == 2 and
+                value[2] == 0 ):
+                print("Real: {:>26}   Classifier: {:>30}".format(value[0],
+                                                          value[1]))
